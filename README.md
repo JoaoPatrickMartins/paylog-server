@@ -16,4 +16,20 @@
       <li> Configuração inicial de rotas no routes.js e integração ao server.js. </li>
       <li> Inicialização dos Controllers.</li>
     </ul>
+  <h3>23/03/2023<h3>
+    <ul>
+      <li>implementção do database/index.js e do config/database.js.</li>
+      <li>Conexão ao MongoDB utilizando o Mongoose.</li>
+    </ul>
+  <h3>24/03/2023</h3>
+    <ul>
+      <li>Debug da Conexão com o MongoDB.</li>
+      <li>Refatoramento do código do server.js.</li>
+      <li>Inicializando implementação do models/User.js.</li>
+      <li>Inicializando implementação do models/requet.js.</li>
+      <li>Implementado método show e create no controllers/usersController.js.</li>
+      <li>Inserindo nova dependencia "bcryptjs": "2.4.3"</li>
+      <li>Implementado criptografia (utilizando criptografia não reversível, do tipo hash) ao password ao método create do usersController.</li>
+    </ul> 
+
     
