@@ -1,3 +1,7 @@
 import app from "./app";
 
-app.listen(5000);
+const port = 5000;
+
+app.listen(port, () => {
+    console.log(`⚡ backend started at http://localhost:${port}`)
+});

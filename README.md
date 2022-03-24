@@ -1,7 +1,7 @@
 <h1 align="center"> Paylog Server</h1>
 <p>Back-end da aplicação Paylog. Uma aplicação web para registro e aprovação de pagamentos para uma empresa.</p> 
 
-<h2>Diario de Bordo<h2>
+<h2>Diário de Bordo<h2>
   <h3>21/03/2023 das 18:00h às 22:30h <h3>
     <ul>
       <li> Instalação das dependencias necessárias:
