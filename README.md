@@ -2,7 +2,7 @@
 <p>Back-end da aplicação Paylog. Uma aplicação web para registro e aprovação de pagamentos para uma empresa.</p> 
 
 <h2>Diário de Bordo<h2>
-  <h3>21/03/2023 das 18:00h às 22:30h <h3>
+  <h3>21/03/2023 das 18:00h às 22:30h </h3>
     <ul>
       <li> Instalação das dependencias necessárias:
         "cors": "^2.8.5",
@@ -16,7 +16,7 @@
       <li> Configuração inicial de rotas no routes.js e integração ao server.js. </li>
       <li> Inicialização dos Controllers.</li>
     </ul>
-  <h3>23/03/2023<h3>
+  <h3>23/03/2023</h3>
     <ul>
       <li>implementção do database/index.js e do config/database.js.</li>
       <li>Conexão ao MongoDB utilizando o Mongoose.</li>
