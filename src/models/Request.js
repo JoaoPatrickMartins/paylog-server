@@ -11,7 +11,7 @@ const requestSchema = new mongoose.Schema(
             required: true
         },
         origin_id: {
-            type: Object,
+            type: String,
             required: true
         },
         request_date: {
@@ -31,8 +31,7 @@ const requestSchema = new mongoose.Schema(
             required: true
         },
         request_observation: {
-            type: String,
-            required: true
+            type: String
         },
         requester_name: {
             type: String,
@@ -43,7 +42,7 @@ const requestSchema = new mongoose.Schema(
             required: true
         },
         company: {
-            type: Object,
+            type: String,
             required: true
         },
         status: {
@@ -51,8 +50,7 @@ const requestSchema = new mongoose.Schema(
             required: true
         },
         approver_name: {
-            type: String,
-            required: true
+            type: String
         },
         userId: {
             type: String,

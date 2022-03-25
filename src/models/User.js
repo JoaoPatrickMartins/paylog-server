@@ -13,6 +13,7 @@ const userSchema = new mongoose.Schema(
             type: String,
             required: true
         }
+        //inserir as demais informaçoes de usuarios name, job_position, company
     },
     {
         timestamps: true
