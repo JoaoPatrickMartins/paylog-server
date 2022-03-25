@@ -73,6 +73,63 @@ class RequestsController {
         }
     }
 
+    async update(req, res) {
+        try {
+            const { user_id, id } = req.params;
+            const {
+                title,
+                value,
+                origin_id,
+                request_date,
+                due_date,
+                class_dre,
+                subclass_dre,
+                request_observation,
+                requester_name,
+                job_position,
+                company,
+                status,
+                approver_name
+            } = req.body;
+
+            const user = await User.findById(user_id);
+
+            if (!user) {
+                return res.status(404).json();
+            }
+
+            const request = await Request.findOne({
+                userId: user_id,
+                id
+            });
+
+            if (!request) {
+                return res.status(404).json();
+            }
+
+            await request.updateOne({
+                title,
+                value,
+                origin_id,
+                request_date,
+                due_date,
+                class_dre,
+                subclass_dre,
+                request_observation,
+                requester_name,
+                job_position,
+                company,
+                status,
+                approver_name
+            });
+            
+            return res.status(200).json();
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({ error: "Internal server error." });
+        }
+    }
+
     async destroy(req, res) {
          try {
              const { user_id, id } = req.params;

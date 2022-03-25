@@ -43,5 +43,9 @@
       <li>Implementado rota index do RequestController.js no routes.js</li>
       <li>Implementado rota create do RequestController.js no routes.js</li>
       <li>Implementado rota destroy do RequestController.js no routes.js</li>
-    </ul> 
+      <li>Implementado metodo show do RequestController.js</li>
+      <li>Implementado rota show do RequestController.js no routes.js</li>
+      <li>Implementado metodo update do RequestController.js</li>
+      <li>Implementado rota update do RequestController.js no routes.js</li>
+    </ul>
     
