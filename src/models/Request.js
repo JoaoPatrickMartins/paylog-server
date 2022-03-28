@@ -11,7 +11,7 @@ const requestSchema = new mongoose.Schema(
             required: true
         },
         origin_id: {
-            type: String,
+            type: Object,
             required: true
         },
         request_date: {
@@ -42,7 +42,7 @@ const requestSchema = new mongoose.Schema(
             required: true
         },
         company: {
-            type: String,
+            type: Object,
             required: true
         },
         status: {

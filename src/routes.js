@@ -1,12 +1,20 @@
 import { Router } from 'express'
 
-import helloController from './controllers/helloController'
+import auth from './middlewares/auth';
+
+import SessionsController from './controllers/SessionsController';
 import RequestsController from './controllers/RequestsController';
 import UsersController from './controllers/UsersController';
 
 const routes = new Router();
 
-routes.get('/hello', helloController.index);
+//Public Controller
+routes.post('/sessions', SessionsController.create);
+
+//Middlewares
+routes.use(auth);
+
+//Private Controller
 
 //RESTFull
 //Routes user

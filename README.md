@@ -48,4 +48,10 @@
       <li>Implementado metodo update do RequestController.js</li>
       <li>Implementado rota update do RequestController.js no routes.js</li>
     </ul>
-    
+    <h3>28/03/2023</h3>
+    <ul>
+      <li>Instalação da dependencia jsonwebtoken</li>
+      <li>Implementado controllers/SessionsControllers.js</li>
+      <li>implementa metodo create no SessionsControllers</li>
+      <li>implementado a rota create do SessionsControllers.js</li>
+    </ul>
