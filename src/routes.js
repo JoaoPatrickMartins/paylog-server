@@ -12,7 +12,7 @@ const routes = new Router();
 routes.post('/sessions', SessionsController.create);
 
 //Middlewares
-routes.use(auth);
+//routes.use(auth);
 
 //Private Controller
 

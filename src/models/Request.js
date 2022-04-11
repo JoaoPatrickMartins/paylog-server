@@ -12,7 +12,7 @@ const requestSchema = new mongoose.Schema(
         },
         origin_id: {
             type: Object,
-            required: true
+            //required: true
         },
         request_date: {
             type: String,
@@ -35,19 +35,19 @@ const requestSchema = new mongoose.Schema(
         },
         requester_name: {
             type: String,
-            required: true
+            //required: true
         },
         job_position: {
             type: String,
-            required: true
+            //required: true
         },
         company: {
             type: Object,
-            required: true
+            //required: true
         },
         status: {
             type: String,
-            required: true
+            //required: true
         },
         approver_name: {
             type: String
