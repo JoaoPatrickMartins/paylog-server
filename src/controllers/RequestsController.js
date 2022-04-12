@@ -130,6 +130,7 @@ class RequestsController {
         }
     }
 
+    //erro no destroy, sempre deletando o primeiro
     async destroy(req, res) {
          try {
              const { user_id, id } = req.params;
