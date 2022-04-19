@@ -24,6 +24,32 @@ class RequestsController {
         }
     }
 
+    async show(req, res){
+        try {
+            const { user_id, id } = req.params;
+
+            const user = await User.findById(user_id);
+
+            if (!user) {
+                return res.status(404).json();
+            }
+
+           const request = await Request.findOne({
+                userId: user_id,
+                _id: id
+            });
+
+            if (!request) {
+                return res.status(404).json();
+            }
+
+            return res.json(request);
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({ error: "Internal server error." });
+        }
+    }
+
     async create(req, res) {
         try {
             const { user_id } = req.params;
@@ -100,7 +126,7 @@ class RequestsController {
 
             const request = await Request.findOne({
                 userId: user_id,
-                id
+                _id: id
             });
 
             if (!request) {
@@ -143,7 +169,7 @@ class RequestsController {
 
              const request = await Request.findOne({
                  userId: user_id,
-                 id
+                 _id: id
              });
 
              if (!request) {
