@@ -33,7 +33,7 @@ class UsersController{
     
     async create(req, res){
         try {
-            const { email, password } = req.body;
+            const { email, password, first_name, last_name, job_position, company, permission } = req.body;
 
             const user = await User.findOne({ email });
 
@@ -44,12 +44,12 @@ class UsersController{
             //encrypt password
             const encryptedPassword = await createPasswordHash(password);
 
-            const newUSer = await User.create({ email, password: encryptedPassword });
+            const newUSer = await User.create({ email, password: encryptedPassword, first_name, last_name, job_position, company, permission });
 
             return res.status(201).json(newUSer);
         } catch (err) {
             console.error(err);
-            return res.status(500).json({ error: "Internal server error." });
+            return res.status(500).json({ error: "Internal server error. 1" });
         }
     }
 
@@ -58,7 +58,7 @@ class UsersController{
         try {
             const { id } = req.params;
 
-            const { email, password } = req.body;
+            const { email, password, first_name, last_name, job_position, company, permission } = req.body;
 
             const user = await User.findById(id);
             
@@ -69,7 +69,7 @@ class UsersController{
             //encrypt password
             const encryptedPassword = await createPasswordHash(password);
 
-            await user.updateOne({ email, password: encryptedPassword });
+            await user.updateOne({ email, password: encryptedPassword, first_name, last_name, job_position, company, permission });
 
             return res.status(200).json();    
         } catch (err) {

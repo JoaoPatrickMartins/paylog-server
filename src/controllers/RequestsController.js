@@ -12,10 +12,15 @@ class RequestsController {
                 return res.status(404).json();
             }
 
-            const requests = await Request.find({
-                //aplicar excessão de acesso total ao admin
-                userId: user_id
-            });
+            let requests;
+
+            if((user.permission) == "admin"){
+                requests = await Request.find();
+            }else{
+                requests = await Request.find({
+                    userId: user_id
+                });
+            }
 
             return res.json(requests);
         } catch (err) {
@@ -62,11 +67,6 @@ class RequestsController {
                 class_dre,
                 subclass_dre,
                 request_observation,
-                requester_name,
-                job_position,
-                company,
-                status,
-                approver_name
             } = req.body;
 
             const user = await User.findById(user_id);
@@ -74,6 +74,8 @@ class RequestsController {
             if (!user) {
                 return res.status(404).json();
             }
+
+            const requesterName = `${user.first_name} ${user.last_name}`;
 
             const newRequest = await Request.create({
                 title,
@@ -84,11 +86,10 @@ class RequestsController {
                 class_dre,
                 subclass_dre,
                 request_observation,
-                requester_name, //pegar direto do user quando estiver implementado
-                job_position,   //pegar direto do user quando estiver implementado
-                company,        //pegar direto do user quando estiver implementado
-                status,
-                approver_name,   //pegar direto do user_admin quando estiver implementado
+                requester_name: requesterName, 
+                job_position: user.job_position,  
+                company: user.company,
+                status: "Pendente",
                 userId: user_id
             });
             
@@ -156,7 +157,6 @@ class RequestsController {
         }
     }
 
-    //erro no destroy, sempre deletando o primeiro
     async destroy(req, res) {
          try {
              const { user_id, id } = req.params;
