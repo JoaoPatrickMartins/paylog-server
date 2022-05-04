@@ -26,9 +26,11 @@ routes.delete('/users/:id', UsersController.destroy);
 
 //Routes request
 routes.get("/users/:user_id/requests", RequestsController.index);
+routes.get("/users/:user_id/requests/peding", RequestsController.showPending);
+routes.get("/users/:user_id/requests/:id", RequestsController.show);
 routes.post("/users/:user_id/requests", RequestsController.create);
 routes.delete("/users/:user_id/requests/:id", RequestsController.destroy);
 routes.put("/users/:user_id/requests/:id", RequestsController.update);
-routes.get("/users/:user_id/requests/:id", RequestsController.show);
+
 
 export default routes;

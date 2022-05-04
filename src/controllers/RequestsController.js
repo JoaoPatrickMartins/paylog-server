@@ -29,6 +29,36 @@ class RequestsController {
         }
     }
 
+    async showPending(req, res){
+        try {
+            const { user_id } = req.params;
+
+            const user = await User.findById(user_id);
+
+            if (!user) {
+                return res.status(404).json();
+            }
+
+            let requests;
+
+            if((user.permission) == "admin"){
+                requests = await Request.find({
+                    status: "Pendente"
+                });
+            }else{
+                requests = await Request.find({
+                    userId: user_id,
+                    status: "Pendente"
+                });
+            }
+
+            return res.json(requests);
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({ error: "Internal server error." });
+        }
+    }
+
     async show(req, res){
         try {
             const { user_id, id } = req.params;
