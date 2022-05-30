@@ -28,7 +28,7 @@ const requestSchema = new mongoose.Schema(
         },
         subclass_dre: {
             type: String,
-            required: true
+            //required: true
         },
         request_observation: {
             type: String
