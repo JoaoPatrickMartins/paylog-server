@@ -1,5 +1,5 @@
 import app from "./app";
-import "dotenv/config";
+require("dotenv").config();
 
 
 app.listen(process.env.PORT || 5000);
