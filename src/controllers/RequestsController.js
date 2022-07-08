@@ -14,7 +14,7 @@ class RequestsController {
 
             let requests;
 
-            if((user.permission) == "admin"){
+            if(((user.permission) == "admin") || ((user.permission) == "supervisor")){
                 requests = await Request.find();
             }else{
                 requests = await Request.find({
@@ -51,6 +51,37 @@ class RequestsController {
                     status: "Pendente"
                 });
             }
+
+            return res.json(requests);
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({ error: "Internal server error." });
+        }
+    }
+
+    async showSupervisor(req, res){
+        try {
+            const { user_id } = req.params;
+
+            const user = await User.findById(user_id);
+
+            if (!user) {
+                return res.status(404).json();
+            }
+
+            let requests;
+            let requestsChecked;
+            let requestsSupervisor;
+
+            requestsSupervisor = await Request.find({
+                checked: true,
+            });
+
+            requestsChecked = await Request.find({
+                forward_to_supervisor: true,
+            });
+
+            requests = requestsSupervisor.concat(requestsChecked);
 
             return res.json(requests);
         } catch (err) {
@@ -146,7 +177,9 @@ class RequestsController {
                 job_position,
                 company,
                 status,
-                approver_name
+                approver_name,
+                checked,
+                forward_to_supervisor
             } = req.body;
 
             const user = await User.findById(user_id);
@@ -177,7 +210,9 @@ class RequestsController {
                 job_position,
                 company,
                 status,
-                approver_name
+                approver_name,
+                checked,
+                forward_to_supervisor
             });
             
             return res.status(200).json();

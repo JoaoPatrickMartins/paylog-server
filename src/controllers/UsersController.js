@@ -65,11 +65,37 @@ class UsersController{
             if(!user){
                 return res.status(404).json();
             }
-
+            
             //encrypt password
             const encryptedPassword = await createPasswordHash(password);
-
             await user.updateOne({ email, password: encryptedPassword, first_name, last_name, job_position, company, permission });
+
+            await user.updateOne({ email, first_name, last_name, job_position, company, permission });
+
+
+            return res.status(200).json();    
+        } catch (err) {
+            console.error(err);
+            return res.status(500).json({ error: "Internal server error." });            
+        }
+        
+    }
+
+    async updatePassword(req, res){
+        try {
+            const { id } = req.params;
+
+            const { password } = req.body;
+
+            const user = await User.findById(id);
+            
+            if(!user){
+                return res.status(404).json();
+            }
+            
+            //encrypt password
+            const encryptedPassword = await createPasswordHash(password);
+            await user.updateOne({ password: encryptedPassword });
 
             return res.status(200).json();    
         } catch (err) {

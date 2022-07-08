@@ -12,7 +12,7 @@ const requestSchema = new mongoose.Schema(
         },
         origin_id: {
             type: String,
-            //required: true
+            required: true,
         },
         request_date: {
             type: String,
@@ -55,6 +55,12 @@ const requestSchema = new mongoose.Schema(
         userId: {
             type: String,
             required: true
+        },
+        checked: {   
+            type: Boolean,
+        },
+        forward_to_supervisor: {
+            type: Boolean,
         }
     },
     {

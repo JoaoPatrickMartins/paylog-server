@@ -29,11 +29,10 @@ const userSchema = new mongoose.Schema(
             type: String,
             required: true
         },
-        permission: {
+        permission: {   
             type: String,
             required: true
-        }
-        //inserir as demais informaçoes de usuarios name, job_position, company
+        } //admin, supervisor geral, gestao de estoque, gestao financeira, user
     },
     {
         timestamps: true
