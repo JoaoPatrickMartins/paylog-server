@@ -6,6 +6,7 @@ import SessionsController from './controllers/SessionsController';
 import RequestsController from './controllers/RequestsController';
 import UsersController from './controllers/UsersController';
 import PurchaseRequestsController from './controllers/PurchaseRequestsController';
+import DepositController from './controllers/DepositController';
 
 const routes = new Router();
 
@@ -36,7 +37,13 @@ routes.delete("/users/:user_id/requests/:id", RequestsController.destroy);
 routes.put("/users/:user_id/requests/:id", RequestsController.update);
 
 //Routes purchase request
-routes.get("/users/:user_id/purchaserequests/:company", PurchaseRequestsController.index);
-routes.post("/users/:user_id/purchaserequests", PurchaseRequestsController.create);
+routes.get("/users/:user_id/:company/purchaserequests", PurchaseRequestsController.index);
+routes.post("/users/:user_id/:company/purchaserequests", PurchaseRequestsController.create);
+
+// Routes deposit
+routes.get("/users/:user_id/:company/deposit", DepositController.index);
+routes.post("/users/:user_id/:company/deposit", DepositController.create);
+routes.put("/users/:user_id/:company/deposit/:id", DepositController.update);
+routes.delete("/users/:user_id/:company/deposit/:id", DepositController.destroy);
 
 export default routes;
