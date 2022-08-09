@@ -17,7 +17,7 @@ routes.post('/sessions', SessionsController.create);
 routes.use(auth);
 
 //Private Controller
-
+ 
 //RESTFull
 //Routes user
 routes.get('/users', UsersController.index);
