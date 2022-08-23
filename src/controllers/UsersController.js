@@ -58,7 +58,7 @@ class UsersController{
         try {
             const { id } = req.params;
 
-            const { email, password, first_name, last_name, job_position, company, permission } = req.body;
+            const { email, first_name, last_name, job_position, company, permission } = req.body;
 
             const user = await User.findById(id);
             
@@ -67,8 +67,7 @@ class UsersController{
             }
             
             //encrypt password
-            const encryptedPassword = await createPasswordHash(password);
-            await user.updateOne({ email, password: encryptedPassword, first_name, last_name, job_position, company, permission });
+            await user.updateOne({ email, first_name, last_name, job_position, company, permission });
 
             await user.updateOne({ email, first_name, last_name, job_position, company, permission });
 
