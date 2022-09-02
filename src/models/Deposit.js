@@ -7,12 +7,10 @@ const depositSchema = new mongoose.Schema(
             required: true
         },
         depositorName: {
-            type: String,
-            required: true
+            type: String
         },
         depositCompany: {
-            type: String,
-            required: true
+            type: String
         },
         depositDate: {
             type: String,
@@ -22,8 +20,7 @@ const depositSchema = new mongoose.Schema(
             type: String
         },
         status: {
-            type: String,
-            required: true
+            type: String
         },
     },
     {
