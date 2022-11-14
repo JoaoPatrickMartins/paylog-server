@@ -2,9 +2,11 @@ import User from "../models/User";
 import Request from "../models/Request";
 
 class RequestsController {
+    
     async index(req, res){
         try {
             const { user_id } = req.params;
+            const { company, origin_id, start_date, end_date, class_dre } = req.query;
 
             const user = await User.findById(user_id);
 
@@ -21,6 +23,22 @@ class RequestsController {
                     userId: user_id
                 });
             }
+
+            requests = company ? ( requests.filter(result => {
+                return result.company === company;
+            })) : requests;
+
+            requests = origin_id ? ( requests.filter(result => {
+                return result.origin_id === origin_id;
+            })) : requests;
+
+            requests = (start_date && end_date) ? ( requests.filter(result => {
+                return result.request_date >= start_date && result.request_date <= end_date;
+            })) : requests;
+
+            requests = class_dre ? ( requests.filter(result => {
+                return result.class_dre === class_dre;
+            })) : requests;
 
             return res.json(requests);
         } catch (err) {
