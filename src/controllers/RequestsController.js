@@ -140,6 +140,7 @@ class RequestsController {
             const {
                 title,
                 value,
+                company,
                 origin_id,
                 request_date,
                 due_date,
@@ -167,7 +168,7 @@ class RequestsController {
                 request_observation,
                 requester_name: requesterName, 
                 job_position: user.job_position,  
-                company: user.company,
+                company: company,
                 status: "Pendente",
                 userId: user_id
             });
