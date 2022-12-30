@@ -6,7 +6,7 @@ class RequestsController {
     async index(req, res){
         try {
             const { user_id } = req.params;
-            const { company, origin_id, start_date, end_date, class_dre } = req.query;
+            const { company, origin_id, start_date, end_date, class_dre, subclass_dre, status } = req.query;
 
             const user = await User.findById(user_id);
 
@@ -33,11 +33,19 @@ class RequestsController {
             })) : requests;
 
             requests = (start_date && end_date) ? ( requests.filter(result => {
-                return result.request_date >= start_date && result.request_date <= end_date;
+                return result.due_date >= start_date && result.due_date <= end_date;
             })) : requests;
 
             requests = class_dre ? ( requests.filter(result => {
                 return result.class_dre === class_dre;
+            })) : requests;
+
+            requests = subclass_dre ? ( requests.filter(result => {
+                return result.subclass_dre === subclass_dre;
+            })) : requests;
+
+            requests = status ? ( requests.filter(result => {
+                return result.status === status;
             })) : requests;
 
             return res.json(requests);
