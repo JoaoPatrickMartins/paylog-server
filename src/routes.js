@@ -41,9 +41,9 @@ routes.get("/users/:user_id/:company/purchaserequests", PurchaseRequestsControll
 routes.post("/users/:user_id/:company/purchaserequests", PurchaseRequestsController.create);
 
 // Routes deposit
-routes.get("/users/:user_id/:company/deposit", DepositController.index);
-routes.post("/users/:user_id/:company/deposit", DepositController.create);
-routes.put("/users/:user_id/:company/deposit/:id", DepositController.update);
-routes.delete("/users/:user_id/:company/deposit/:id", DepositController.destroy);
+routes.get("/users/:user_id/deposit", DepositController.index);
+routes.post("/users/:user_id/deposit", DepositController.create);
+routes.put("/users/:user_id/deposit/:id", DepositController.update);
+routes.delete("/users/:user_id/deposit/:id", DepositController.destroy);
 
 export default routes;

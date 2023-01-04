@@ -58,6 +58,7 @@ class PurchaseRequestsController {
                 value,
                 company,
                 purchase_requester_name: purchaseRequesterName,
+                userId: user_id
             });
 
             return res.status(201).json(newPurchaseRequest);

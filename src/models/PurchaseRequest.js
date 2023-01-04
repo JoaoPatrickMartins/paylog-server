@@ -66,7 +66,11 @@ const purchaseRequestSchema = new mongoose.Schema(
         company: {
             type: String,
             //required: true
-        }
+        },
+        userId: {
+            type: String,
+            required: true
+        },
     },
     {
         timestamps: true

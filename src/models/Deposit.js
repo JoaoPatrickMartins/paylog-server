@@ -22,6 +22,11 @@ const depositSchema = new mongoose.Schema(
         status: {
             type: String
         },
+        userId: {
+            type: String,
+            required: true
+        },
+
     },
     {
         timestamps: true

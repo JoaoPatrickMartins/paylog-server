@@ -5,7 +5,9 @@ class DepositController {
 
     async index(req, res){
         try {
-            const {  user_id, company } = req.params;
+            const { user_id } = req.params;
+            const { company, start_date, end_date, status } = req.query;
+
 
             const user = await User.findById(user_id);
 
@@ -15,13 +17,27 @@ class DepositController {
 
             let deposit;
 
-            if(((user.permission) == "admin") ){
+            if(((user.permission) == "admin") || ((user.permission) == "supervisor")){
                 deposit = await Deposit.find();
             }else{
                 deposit = await Deposit.find({
-                    company: company
+                    userId: user_id
                 });
             }
+
+            deposit = company ? ( deposit.filter(result => {
+                return result.depositCompany === company;
+            })) : deposit;
+
+            deposit = (start_date && end_date) ? ( deposit.filter(result => {
+                return result.depositDate >= start_date && result.depositDate <= end_date;
+            })) : deposit;
+
+            deposit = status ? ( deposit.filter(result => {
+                return result.status === status;
+            })) : deposit;
+
+            
 
             return res.json(deposit);
             
@@ -53,7 +69,8 @@ class DepositController {
                 depositorName: depositorName,
                 depositCompany: user.company,
                 depositDate,
-                status: "Pendente"
+                status: "Pendente",
+                userId: user_id
             });
 
             return res.status(201).json(newDeposit);
