@@ -96,12 +96,28 @@ class DepositController {
                 return res.status(404).json();
             }
 
-            const deposit = await Deposit.findOne({
-                userId: user_id,
-                _id: id
-            });
+            let deposit
+
+            if(((user.permission) == "admin") || ((user.permission) == "supervisor")){
+                deposit = await Deposit.findOne({
+                    _id: id
+                });
+            }else{
+                deposit = await Deposit.findOne({
+                    userId: user_id,
+                    _id: id
+                });
+            }
 
             if (!deposit) {
+                return res.status(404).json();
+            }
+
+            if (deposit.value === '') {
+                return res.status(404).json();
+            }
+
+            if (deposit.deposit === '') {
                 return res.status(404).json();
             }
 
@@ -127,6 +143,17 @@ class DepositController {
 
             if(!user) {
                 return res.status(404).json();
+            }
+
+            if(((user.permission) == "admin") || ((user.permission) == "supervisor")){
+                const deposit = await Deposit.findOne({
+                    _id: id
+                });
+            }else{
+                const deposit = await Deposit.findOne({
+                    userId: user_id,
+                    _id: id
+                });
             }
 
             const deposit = await Deposit.findOne({
